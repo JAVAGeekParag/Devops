@@ -1,30 +1,49 @@
+Jenkins Setup on Ubuntu (Practical Commands)
+
+1️⃣ Switch to root user
+Allows running administrative commands without typing sudo each time.
+
 sudo -i
+
+2️⃣ Update package list
+Refreshes the system package index to get the latest available packages.
 
 apt-get update
 
+3️⃣ Check if Java is installed
+Jenkins requires Java to run. This command verifies whether Java is already present.
+
 java
 
+4️⃣ Install OpenJDK 17
+Installs Java (required dependency for Jenkins).
+
 sudo apt update && sudo apt install -y openjdk-17-jdk
 
-sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc   https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
-echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]"   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
+5️⃣ Add Jenkins repository key
+Adds the official Jenkins GPG key to verify package authenticity.
+
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+
+6️⃣ Add Jenkins repository to the system
+Registers the Jenkins package source so Ubuntu can download Jenkins.
+
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+/etc/apt/sources.list.d/jenkins.list > /dev/null
+
+7️⃣ Update package list again
+Loads the newly added Jenkins repository packages.
+
 sudo apt update
+
+8️⃣ Install Jenkins
+Downloads and installs Jenkins on the system.
+
 sudo apt install jenkins
+
+9️⃣ Verify Jenkins service status
+Checks whether Jenkins is running successfully.
+
 systemctl status jenkins
-
-
-
-
----------------------------------
-
-
-sudo apt update && sudo apt install -y openjdk-17-jdk
-
-
-Jenkins job 1
-https://github.com/CloudDevOpsHub/26janmyfirstjavacI
-*/main
-
-
-javac hellopworld.java
-java hellopworld
